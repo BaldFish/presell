@@ -1,24 +1,28 @@
 <template>
   <div id="app">
     <div class="head-wrap">
-      <div class="head">
-        <router-link to="/home">首页</router-link>
-        <router-link to="/contactUs">联系我们</router-link>
-        <router-link to="/login" class="no_login" v-if="!isLogin">登录</router-link>
-        <!--<div class="no_login" v-if="!isLogin">
-          <a href="#/login">请登录</a>
-          <a href="#/register">免费注册</a>
-        </div>-->
-        <div class="login" v-if="isLogin"  @mouseleave="leaveUl">
-          <div @click.capture="toggle"></div>
+      <ul class="head">
+        <li class="logo">
+          <router-link to="/home"></router-link>
+        </li>
+        <li>
+          <router-link to="/home">首页</router-link>
+        </li>
+        <li>
+          <router-link to="/contactUs">联系我们</router-link>
+        </li>
+        <li class="no_login" v-if="isLogin">
+          <router-link to="/login">登录</router-link>
+        </li>
+        <li class="login" v-if="!isLogin" @mouseleave="leaveUl">
+          <div @click.capture="toggle">17301051538</div>
           <ul v-if="switchover">
             <li><a href="">我的订单</a></li>
             <li><a href="">收货地址</a></li>
             <li @click="dropOut">退出登录</li>
           </ul>
-        </div>
-    
-      </div>
+        </li>
+      </ul>
     </div>
     <div class="main_wrap">
       <router-view class="main" v-if="isRouterAlive"></router-view>
@@ -27,7 +31,7 @@
       <div class="footer">
         <div class="ft-box">
           <a href="/">
-            <p>Trusted Assets Blockchain</p>
+          
           </a>
         </div>
         <div class="ft-box">
@@ -35,24 +39,13 @@
           <ul class="text">
             <li><a href="javascript:void(0)">维修案例</a></li>
             <li><a href="javascript:void(0)">维修设备</a></li>
-            <li><a href="javascript:void(0)">汽车资产</a></li>
-            <li><a href="javascript:void(0)">汽车零部件</a></li>
           </ul>
         </div>
         <div class="ft-box">
-          <ul class="code">
-            <li>
-              <a href="javascript:void(0)">
-                <img class="ft_code" src="" alt="Android">
-                <p>Android版</p>
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <img class="ft_code" src="" alt="IOS">
-                <p>IOS版</p>
-              </a>
-            </li>
+          <span>资产服务</span>
+          <ul class="text">
+            <li><a href="javascript:void(0)">维修案例</a></li>
+            <li><a href="javascript:void(0)">维修设备</a></li>
           </ul>
         </div>
       </div>
@@ -75,25 +68,25 @@
     data() {
       return {
         isRouterAlive: true,
-        switchover:false,
-        isLogin:false,
-        userName:"",
+        switchover: false,
+        isLogin: false,
+        userName: "",
       }
     },
-    beforeMount(){
-      if(JSON.parse(sessionStorage.getItem("loginInfo"))){
-        this.isLogin=true;
-        this.userName=JSON.parse(sessionStorage.getItem("userName")).phone
-      }else{
-        this.isLogin=false
+    beforeMount() {
+      if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
+        this.isLogin = true;
+        this.userName = JSON.parse(sessionStorage.getItem("userName")).phone
+      } else {
+        this.isLogin = false
       }
     },
-    beforeUpdate(){
-      if(JSON.parse(sessionStorage.getItem("loginInfo"))){
-        this.isLogin=true;
-        this.userName=JSON.parse(sessionStorage.getItem("userName")).phone
-      }else{
-        this.isLogin=false
+    beforeUpdate() {
+      if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
+        this.isLogin = true;
+        this.userName = JSON.parse(sessionStorage.getItem("userName")).phone
+      } else {
+        this.isLogin = false
       }
     },
     methods: {
@@ -103,15 +96,19 @@
           this.isRouterAlive = true
         })
       },
-      dropOut(command){
+      dropOut(command) {
         sessionStorage.removeItem('loginInfo');
         sessionStorage.removeItem('userInfo');
         sessionStorage.removeItem('userName');
-        this.switchover=false;
+        this.switchover = false;
         location.reload()
       },
-      toggle(){this.switchover=!this.switchover},
-      leaveUl(){this.switchover=false},
+      toggle() {
+        this.switchover = !this.switchover
+      },
+      leaveUl() {
+        this.switchover = false
+      },
     }
   }
 </script>
@@ -128,43 +125,69 @@
     min-width 1200px
     height: 48px;
     background-color: rgba(1, 1, 1, 0.82);
-    z-index:9999;
+    z-index: 9999;
     .head {
       box-sizing: border-box
       width: 1200px;
-      margin: 0 auto;
+      height 48px
       line-height 48px
+      margin: 0 auto;
       font-size 0
-      a {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.6);
-      }
       .router-link-active {
         color #ffffff
       }
-      /*.no_login{
-        //display inline-block
-        width 160px
-        margin-left 28px
-        color: #666666;
-      }*/
-      .login{
+      li {
         display inline-block
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.6);
+        vertical-align top
+      }
+      .logo{
+        margin-right 586px
+        a{
+          display inline-block
+          width 32px
+          height 38px
+          margin-top 5px
+          background-image: url('./head_logo.png');
+          background-repeat: no-repeat;
+          background-position: top left;
+        }
+      }
+      li:nth-child(2){
+        margin-right 212px
+      }
+      .no_login{
+        width 110px
+        text-align right
+        margin-left 164px
+      }
+      .login{
+        margin-left 164px
         cursor pointer
-        width 160px
+        width 110px
+        text-align right
         position relative
         ul{
-          background-color #ffffff
           position absolute
-          top 34
+          top 48
           right 0
           text-align center
-          width 86px
+          width 110px
           color #666666
-          li:hover{
-            color #c6351e
+          li{
+            width 110px
+            background-color #ffffff;
+            color #529bff;
             a{
-              color #c6351e
+              color #529bff;
+            }
+          }
+          li:hover{
+            background-color #529bff;
+            color #ffffff;
+            a{
+              color #ffffff;
             }
           }
         }
@@ -177,18 +200,18 @@
     box-sizing: border-box;
     margin: 0 auto;
     width 100%
-    min-width 1212px
+    min-width 1200px
     background-color #f3f3f3
   }
   
   .footer-wrap {
     width 100%
-    min-width 1212px
-    background-color: #272324;
+    min-width 1200px
+    background-color: #f2f2f2;
     .footer {
       box-sizing: border-box
-      width 1212px
-      height 156px
+      width 1200px
+      height 160px
       margin 0 auto
       font-size 0
       text-align center
@@ -218,44 +241,22 @@
             margin-right 0
           }
         }
-        .code {
-          font-size 0
-          li {
-            padding 30px 16px 0
-            display inline-block
-            font-size 14px
-            a {
-              color #ffffff
-              p {
-                font-size 16px
-                color #ffffff
-                padding-top 14px
-              }
-            }
-          }
-        }
       }
       .ft-box:last-child {
         margin-right -16px
       }
-      .ft-box:first-child{
+      .ft-box:first-child {
         margin-right 42px
-        a{
+        a {
           display inline-block
           color #d92000
           font-size 10px
-          margin-top 38px
-          background-image: url('');
+          margin-top 49px
+          background-image: url('./footer_logo.png');
           background-position: top left;
           background-repeat: no-repeat;
           width 240px
           height 82px
-          position relative
-          p{
-            position absolute
-            right 0
-            bottom 0
-          }
         }
       }
     }
