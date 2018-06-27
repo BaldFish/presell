@@ -30,22 +30,20 @@
     <div class="footer-wrap">
       <div class="footer">
         <div class="ft-box">
-          <a href="/">
-          
-          </a>
+          <a href="/"></a>
         </div>
         <div class="ft-box">
-          <span>资产服务</span>
+          <span>预售产品</span>
           <ul class="text">
-            <li><a href="javascript:void(0)">维修案例</a></li>
-            <li><a href="javascript:void(0)">维修设备</a></li>
+            <li><a href="javascript:void(0)">可信盾</a></li>
+            <li><a href="javascript:void(0)">可信伴侣</a></li>
           </ul>
         </div>
         <div class="ft-box">
-          <span>资产服务</span>
+          <span>渠道合作</span>
           <ul class="text">
-            <li><a href="javascript:void(0)">维修案例</a></li>
-            <li><a href="javascript:void(0)">维修设备</a></li>
+            <li><a href="javascript:void(0)">咨询电话：010 - 63827419</a></li>
+            <li><a href="javascript:void(0)">合作邮箱：DAN.LUO.BJ@CNLAUNCH.COM</a></li>
           </ul>
         </div>
       </div>
@@ -125,6 +123,7 @@
     min-width 1200px
     height: 48px;
     background-color: rgba(1, 1, 1, 0.82);
+    position: fixed;
     z-index: 9999;
     .head {
       box-sizing: border-box
@@ -211,53 +210,46 @@
     .footer {
       box-sizing: border-box
       width 1200px
-      height 160px
+      height 135px
       margin 0 auto
       font-size 0
-      text-align center
+      //text-align center
       .ft-box {
         display inline-block
-        font-size 16px
         vertical-align top
-        margin-right 66px
         span {
-          padding-top 45px
           display block
-          color #ffffff
+          padding-top 22px
+          padding-bottom 19px
           text-align left
+          font-size 16px
+          color #333333;
         }
         .text {
-          font-size 0
           li {
-            padding-top 25px
-            display inline-block
-            font-size 14px
-            margin-right 77px
+            height 26px
+            line-height 26px
             a {
-              color #ffffff
+              font-size 14px
+              color #333333;
             }
-          }
-          li:last-child {
-            margin-right 0
           }
         }
       }
-      .ft-box:last-child {
-        margin-right -16px
-      }
       .ft-box:first-child {
-        margin-right 42px
+        margin-right 166px
         a {
           display inline-block
-          color #d92000
-          font-size 10px
-          margin-top 49px
+          width 240px
+          height 62px
+          margin-top 26px
           background-image: url('./footer_logo.png');
           background-position: top left;
           background-repeat: no-repeat;
-          width 240px
-          height 82px
         }
+      }
+      .ft-box:last-child {
+        margin-left 314px
       }
     }
   }
