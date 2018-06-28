@@ -4,6 +4,7 @@ Vue.use(Router);
 import myHome from '@/components/home/home'
 import myContactUs from '@/components/contactUs/contactUs'
 import myLogin from '@/components/login/login'
+import myOrder from '@/components/myOrder/myOrder'
 
 export default new Router({
   routes: [
@@ -25,6 +26,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: myLogin
+    },
+    {
+      path: '/myOrder',
+      name: 'myOrder',
+      component: myOrder
     },
   ]
 })
