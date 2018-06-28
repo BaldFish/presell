@@ -120,7 +120,7 @@
   
   .head-wrap {
     width: 100%;
-    min-width 1200px
+    min-width 1274px
     height: 48px;
     background-color: rgba(1, 1, 1, 0.82);
     position: fixed;
@@ -199,13 +199,13 @@
     box-sizing: border-box;
     margin: 0 auto;
     width 100%
-    min-width 1200px
-    background-color #f3f3f3
+    min-width 1274px
+    background-color #ffffff
   }
   
   .footer-wrap {
     width 100%
-    min-width 1200px
+    min-width 1274px
     background-color: #f2f2f2;
     .footer {
       box-sizing: border-box

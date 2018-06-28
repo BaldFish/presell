@@ -4,7 +4,7 @@
       <div class="banner">
         <h2>全球首款基于区块链的共享存储应用</h2>
         <p class="describe">SD卡搭载SE芯片，小身材大能量，购买可信盾，可享受终端内存无限扩容、数字资产加密保护、赢盾宝赚奖品等极致服务</p>
-        <span>立即抢购</span>
+        <span @click="purchase">立即抢购</span>
         <p class="num">可信盾开放售卖前总预约人数&nbsp;&nbsp;41,392,188</p>
       </div>
     </div>
@@ -19,18 +19,106 @@
       <div class="selling">
         <h2>功能卖点</h2>
         <div class="step">
-          <h3>更可信更安全</h3>
+          <h3><span>01</span>更可信更安全</h3>
           <p>基于硬件SE加密模块，实现IPFS的存储可信证明，确保在去中心化、分布式的模式下，从源头上防止恶意攻击及存储作弊，为你带来高可信、高安全等级的区块链应用环境；</p>
-          <h3>变身高可信硬件钱包</h3>
+          <h3><span>02</span>变身高可信硬件钱包</h3>
           <p>搭载SE芯片的可信盾设备，配备可信伴侣，摇身一变变身高可信硬件钱包，外型炫酷方便携带，让你的数字资产高枕无忧；</p>
-          <h3>多终端通用</h3>
+          <h3><span>03</span>多终端通用</h3>
           <p>手机、笔记本、IPAD、电脑……你能想到的终端，都可以成为可信盾施展才华的舞台，成就你的完美区块链应用；</p>
-          <h3>专属加密通道</h3>
+          <h3><span>04</span>专属加密通道</h3>
           <p>定制SE模块，专属的极致加密通道，保障你的数据安全，再也不用担心隐私泄密；</p>
-          <h3>无限量存储空间</h3>
+          <h3><span>05</span>无限量存储空间</h3>
           <p>64G？128G？1T？2T？NO，全网式共享存储，我的存储空间是，无限量；</p>
-          <h3>是伴侣更是“小金矿”</h3>
+          <h3><span>06</span>是伴侣更是“小金矿”</h3>
           <p>购可信盾、用可信盾，可享“盾宝”奖励，赢盾宝，赚TOKEN，兑奖品，赚服务……有了它，你就拥有了无限可能……</p>
+        </div>
+      </div>
+    </div>
+    <div class="shield_wrap">
+      <div class="shield">
+        <h2>关于【盾宝】</h2>
+        <ul>
+          <li>
+            <h3>>>什么是盾宝？</h3>
+            <p>购可信盾、用可信盾，可享“盾宝”奖励，赢盾宝，赚TOKEN，兑奖品，赚服务……有了它，你就拥有了无限可能……</p>
+          </li>
+          <li>
+            <h3>>>如何获得盾宝？</h3>
+            <p>用户可通过购买可信盾智能硬件设备并激活盾宝奖励计划，通过共享存储资源等，按照盾宝产生规则获得盾宝奖励，贡献的越多，则奖励越多。基于可信盾生态所打造的高可信环境，你的每一份付出都将得到最公正的回报。</p>
+          </li>
+          <li>
+            <h3>>>盾宝生成计划</h3>
+            <div>
+              <h4>加入盾宝计划，你可以这样做</h4>
+              <p><span></span>存储空间用不完？贡献剩余空间，即享盾宝奖励；</p>
+              <p><span></span>见到违章汽车义愤填膺？拍下来上传，让正义感得到释放的同时，即享盾宝奖励；</p>
+              <p><span></span>开车时按要求上传车况信息或者路况信息，即享盾宝奖励；</p>
+              <p><span></span>更多应用场景还在持续更新中，可信盾使用不设限、无设防，更多盾宝等你来拿。</p>
+            </div>
+          </li>
+          <li>
+            <h3>>>丰富的盾宝应用场景</h3>
+            <p>盾宝到手后，用户还可使用盾宝兑换丰富的产品和服务， 如共享汽车、换购超值商品等。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="configuration_wrap">
+      <div class="configuration">
+        <h2>可信盾参数</h2>
+        <table>
+          <tr>
+            <td>型号</td>
+            <td>W-345F35543</td>
+          </tr>
+          <tr>
+            <td>颜色</td>
+            <td>黑色</td>
+          </tr>
+          <tr>
+            <td>材质</td>
+            <td>阳极氧化铝合金机身+透明PC面板</td>
+          </tr>
+          <tr>
+            <td>内存</td>
+            <td>16GB</td>
+          </tr>
+          <tr>
+            <td>尺寸</td>
+            <td>3MM*5MM</td>
+          </tr>
+          <tr>
+            <td>重量</td>
+            <td>50G</td>
+          </tr>
+          <tr>
+            <td>接口</td>
+            <td>HDMI OUT*1（支持全高清1080P 60FPS 视频硬件解码输出）</td>
+          </tr>
+          <tr>
+            <td>配件</td>
+            <td>电源适配器</td>
+          </tr>
+          <tr>
+            <td>官方指导价</td>
+            <td>1999元</td>
+          </tr>
+          <tr>
+            <td>包装清单</td>
+            <td>见实体详情</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="coachfellow_wrap">
+      <div class="coachfellow">
+        <h2>可信伴侣</h2>
+        <h3>是USB，更是高可信硬件钱包。</h3>
+        <p>金属化外观设计，新颖巧妙、时尚简洁，极富视觉冲击力，<br>
+          搭配可信盾使用，你要的世界，从现在开始。</p>
+        <div>
+          <h3>即将发售...</h3>
+          <p>FORTHCOMING SALE...</p>
         </div>
       </div>
     </div>
@@ -45,11 +133,35 @@
   export default {
     name: "home",
     data() {
-      return {}
+      return {
+        b:"HTML"
+      }
     },
     mounted() {
     },
-    methods: {},
+    methods: {
+      purchase() {
+        if (false) {
+          console.log(1)
+          this.open1()
+        } else {
+          console.log(2)
+          this.open2()
+        }
+      },
+      open1() {
+      
+      },
+      c(){
+        console.log('c')
+      },
+      open2() {
+        this.$alert('<div class="aaa">这是 <p>{{this.b}}</p> 片段</div>', {
+          dangerouslyUseHTMLString: true,
+          center: true
+        });
+      }
+    },
     watch: {},
     computed: {},
     components: {}
@@ -135,7 +247,7 @@
             color: #666666;
           }
         }
-        p{
+        p {
           width 592px
           margin-left 445px
           margin-bottom 30px
@@ -145,34 +257,42 @@
         }
       }
     }
-    .selling_wrap{
+    .selling_wrap {
       height 1080px
       background-image: url('./images/bj1.png');
       background-position: top center;
       background-repeat: no-repeat;
       background-size: cover;
-      .selling{
+      .selling {
         width 1052px
         margin 0 auto
         height 1080px
-        h2{
+        h2 {
           font-size: 24px;
           color: #519bff;
           text-align center
           padding-top 40px
         }
-        .step{
+        .step {
           color #ffffff
           margin-top 123px
-          h3{
+          h3 {
             font-size: 28px;
             line-height 34px
             background-image: url('./images/00.png');
             background-position: top left;
             background-repeat: no-repeat;
             padding-left 84px
+            position relative
+            span {
+              position absolute
+              top 0
+              left 8px
+              color #2d9cff;
+              font-size 16px
+            }
           }
-          p{
+          p {
             padding-left 84px
             font-size: 22px;
             margin-top 22px
@@ -182,5 +302,180 @@
         }
       }
     }
+    .shield_wrap {
+      height 1064px
+      background-color #ffffff
+      .shield {
+        width 1274px
+        height 1064px
+        margin 0 auto
+        box-sizing border-box
+        padding-top 78px
+        padding-bottom 62px
+        background-image: url('./images/WHAT.png'), url('./images/bj2.png');
+        background-repeat: no-repeat, no-repeat;
+        background-position: top 107px left, bottom 62px right;
+        h2 {
+          font-size: 24px;
+          color: #222222;
+          text-align center
+        }
+        ul {
+          padding-top 192px
+          li {
+            padding-bottom 67px
+            h3 {
+              font-size: 24px;
+              color: #333333;
+            }
+            p {
+              margin-top 22px
+              width: 688px;
+              font-size: 18px;
+              line-height 24px
+              color: #666666;
+            }
+            div {
+              h4 {
+                margin-top 25px
+                margin-bottom 11px
+                font-size: 18px;
+                color: #666666;
+              }
+              p {
+                font-size: 16px;
+                line-height 22px
+                color: #666666;
+                margin-top 0
+                span {
+                  display inline-block
+                  width: 14px;
+                  height: 14px;
+                  background-color: #bfbfbf;
+                  border-radius 50%
+                  margin-right 8px
+                }
+              }
+            }
+          }
+          li:first-child {
+            p {
+              width 470px
+            }
+          }
+        }
+      }
+    }
+    .configuration_wrap {
+      height: 700px;
+      background-color: #434343;
+      .configuration {
+        box-sizing border-box
+        width 1274px
+        height 700px
+        margin 0 auto
+        padding-top 50px
+        h2 {
+          font-size: 24px;
+          color: #ffffff;
+          text-align center
+        }
+        table {
+          box-sizing border-box
+          margin 0 auto
+          margin-top 73px
+          width 1000px
+          height 450px
+          border 1px solid #ffffff
+          table-layout: fixed;
+          tr {
+            box-sizing border-box
+            td {
+              box-sizing border-box
+              border 1px solid #ffffff
+              color #ffffff
+              font-size 16px
+              text-align center
+              vertical-align: middle;
+              height: 44px;
+              text-overflow: ellipsis;
+            }
+            td:first-child {
+              width 256px
+            }
+          }
+        }
+      }
+    }
+    .coachfellow_wrap {
+      height 1080px
+      margin 0 auto
+      box-sizing border-box
+      height 1080px
+      background-image: url('./images/bj3.png');
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      .coachfellow {
+        box-sizing border-box
+        width 1188px
+        height 1080px
+        margin 0 auto
+        background-image: url('./images/yuan.png'), url('./images/WechatIMG189.png');
+        background-repeat: no-repeat, no-repeat;
+        background-position: bottom 128px left, bottom 240px right;
+        padding-top 282px
+        position relative
+        h2 {
+          font-size: 40px;
+          color: #2d9cff;
+        }
+        h3 {
+          font-size: 30px;
+          color: #ffffff;
+          margin-top 28px
+        }
+        p {
+          margin-top 100px
+          width 540px
+          font-size: 24px;
+          line-height 30px
+          color: #ffffff;
+        }
+        div {
+          position absolute
+          bottom 174px
+          left 65px
+          h3 {
+            font-size: 36px;
+            color: #ffffff;
+          }
+          p {
+            font-size: 24px;
+            color: #ffffff;
+            margin-top 14px
+          }
+        }
+      }
+    }
+  }
+</style>
+<style lang="stylus">
+  .el-message-box {
+    display: inline-block;
+    width: 314px;
+    height 222px
+    padding-bottom: 10px;
+    vertical-align: middle;
+    background-color: #fff;
+    border-radius: 30px;
+    border: 0
+    font-size: 18px;
+    -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,1);
+    box-shadow: 0 0 0 0 rgba(0,0,0,1);
+    text-align: left;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 </style>
