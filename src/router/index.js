@@ -5,6 +5,7 @@ import myHome from '@/components/home/home'
 import myContactUs from '@/components/contactUs/contactUs'
 import myLogin from '@/components/login/login'
 import myOrder from '@/components/myOrder/myOrder'
+import myReceivingInfo from '@/components/receivingInfo/receivingInfo'
 
 export default new Router({
   routes: [
@@ -31,6 +32,11 @@ export default new Router({
       path: '/myOrder',
       name: 'myOrder',
       component: myOrder
+    },
+    {
+      path: '/receivingInfo',
+      name: 'receivingInfo',
+      component: myReceivingInfo
     },
   ]
 })

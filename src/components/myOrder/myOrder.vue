@@ -9,7 +9,7 @@
               </router-link>
             </li>
             <li>
-              <router-link to="">
+              <router-link to="/receivingInfo">
                 <p>收货信息</p>
               </router-link>
             </li>

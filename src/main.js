@@ -12,7 +12,13 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-import '@/common/js/validate.js'
+//引入validate校验
+import '@/common/js/validate.js';
+
+//引入省、市、区三级联动
+import 'vue-area-linkage/dist/index.css';
+import VueAreaLinkage from 'vue-area-linkage';
+Vue.use(VueAreaLinkage);
 
 Vue.config.productionTip = false
 
