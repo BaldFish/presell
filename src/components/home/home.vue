@@ -122,6 +122,57 @@
         </div>
       </div>
     </div>
+    <el-dialog
+      title="确认订单"
+      :visible.sync="dialog1"
+      width="520px"
+      top="20vh"
+      center
+      :close-on-click-modal=false
+      :close-on-press-escape=false
+      class="dialog1">
+      <div class="content">
+        <ul>
+          <li><span>收货人：</span><span>陈逻</span></li>
+          <li><span>收货人电话：</span><span>15489768790</span></li>
+          <li><span>收货地址：</span><span>北京市朝阳区万达广场8号楼808万达广场808803</span></li>
+          <li><span>产品信息：</span><span>可信盾</span></li>
+          <li><span>数量：</span><span class="num"><span @click="subtract">-</span><input type="text" v-model="num"><span @click="add">+</span></span>
+          </li>
+          <li><span>支付金额：</span><span>899</span></li>
+          <li>
+            <span>支付方式：</span>
+            <span class="pay">
+              <label class="pay_label">
+                <input class="pay_radio" type="radio" name="pay" value=1 v-model="value">
+                <span class="pay_radioInput"></span>支付宝
+              </label>
+              <label class="pay_label">
+                  <input class="pay_radio" type="radio" name="pay" value=2 v-model="value">
+                  <span class="pay_radioInput"></span>微信
+              </label>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="payment">确定</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog
+      title="确认订单"
+      :visible.sync="dialog2"
+      width="314px"
+      top="20vh"
+      center
+      :close-on-click-modal=false
+      :close-on-press-escape=false
+      class="dialog2">
+      <span>请填写收货地址</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="write">去填写</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -134,33 +185,40 @@
     name: "home",
     data() {
       return {
-        b:"HTML"
+        dialog1: false,
+        dialog2: false,
+        address: "",
+        num: 1,
+        value:1
+        
       }
     },
     mounted() {
     },
     methods: {
       purchase() {
-        if (false) {
-          console.log(1)
-          this.open1()
+        if (!this.address) {
+          console.log(this.value);
+          this.dialog1 = true
         } else {
-          console.log(2)
-          this.open2()
+          console.log(2);
+          this.dialog2 = true
         }
       },
-      open1() {
-      
+      payment() {
+        this.dialog1 = false;
+        window.location.href = "#/contactUs"
       },
-      c(){
-        console.log('c')
+      write() {
+        this.dialog2 = false;
+        window.location.href = "#/contactUs"
       },
-      open2() {
-        this.$alert('<div class="aaa">这是 <p>{{this.b}}</p> 片段</div>', {
-          dangerouslyUseHTMLString: true,
-          center: true
-        });
-      }
+      add() {
+        this.num++
+      },
+      subtract() {
+        this.num > 1 ? this.num-- : this.num = 1
+      },
     },
     watch: {},
     computed: {},
@@ -461,21 +519,179 @@
   }
 </style>
 <style lang="stylus">
-  .el-message-box {
-    display: inline-block;
-    width: 314px;
-    height 222px
-    padding-bottom: 10px;
-    vertical-align: middle;
-    background-color: #fff;
-    border-radius: 30px;
-    border: 0
-    font-size: 18px;
-    -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,1);
-    box-shadow: 0 0 0 0 rgba(0,0,0,1);
-    text-align: left;
-    overflow: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+  .dialog1 {
+    .el-dialog--center {
+      text-align: center;
+      border-radius: 40px;
+    }
+    .el-dialog__header {
+      padding: 25px 20px 6px;
+      .el-dialog__title {
+        line-height: 24px;
+        font-size: 18px;
+        color: #333333;
+      }
+      .el-dialog__headerbtn {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        padding: 0;
+        background: 0 0;
+        border: none;
+        outline: 0;
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+    .el-dialog__body {
+      font-size: 18px;
+      color: #333333;
+      padding-left 58px
+      padding-top 0
+      .content {
+        li {
+          font-size 0
+          padding 6px 0
+          span {
+            font-size 14px
+            color: #666666;
+            display inline-block
+            width 320px
+            word-break: break-all;
+            word-wrap: break-word;
+            vertical-align top
+            line-height 18px
+          }
+          span:first-child {
+            width 84px
+            text-align right
+          }
+          .num {
+            border 1px solid #eeeeee
+            width 70px
+            font-size 0
+            height 18px
+            box-sizing border-box
+            span {
+              font-size 14px
+              display inline-block
+              width 18px
+              text-align center
+              cursor pointer
+              -moz-user-select: none; /*火狐*/
+              -webkit-user-select: none; /*webkit浏览器*/
+              -ms-user-select: none; /*IE10*/
+              -khtml-user-select: none; /*早期浏览器*/
+              user-select: none;
+            }
+            span:active {
+              background-color #529bff
+              color #ffffff
+            }
+            input {
+              display inline-block
+              outline: none;
+              text-align center
+              width 32px
+              height 16px
+              font-size 14px
+            }
+          }
+          .pay {
+            .pay_label {
+              margin-right 24px
+              display: inline-block
+            }
+            .pay_radio {
+              display: none
+            }
+            .pay_radioInput {
+              background-color: #fffff;
+              border: 1px solid #529bff;
+              border-radius: 50%;
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              margin-right: 8px;
+              vertical-align: middle;
+              line-height: 1
+            }
+            .pay_radio:checked + .pay_radioInput:after {
+              background-color: #529bff;
+              border-radius: 50%;
+              content: "";
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              margin 5px
+            }
+            .pay_checkbox.pay_radioInput, .pay_radio:checked + .pay_checkbox.pay_radioInput:after {
+              border-radius: 0
+            }
+          }
+        }
+      }
+    }
+    .el-dialog__footer {
+      padding 0
+      padding-bottom 28px
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      .el-button {
+        font-size: 16px;
+        height: 30px;
+        background-color: #529bff;
+        border-radius: 4px;
+        vertical-align top
+        padding 0 20px
+      }
+    }
+  }
+  
+  .dialog2 {
+    .el-dialog--center {
+      text-align: center;
+      border-radius: 25px;
+    }
+    .el-dialog__header {
+      padding: 25px 20px 0px;
+      .el-dialog__title {
+        line-height: 24px;
+        font-size: 18px;
+        color: #333333;
+      }
+      .el-dialog__headerbtn {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        padding: 0;
+        background: 0 0;
+        border: none;
+        outline: 0;
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+    .el-dialog__body {
+      font-size: 18px;
+      color: #333333;
+      text-align center
+      padding-top 52px
+      padding-bottom 52px
+    }
+    .el-dialog__footer {
+      padding 0
+      padding-bottom 28px
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      .el-button {
+        font-size: 16px;
+        height: 30px;
+        background-color: #529bff;
+        border-radius: 4px;
+        vertical-align top
+        padding 0 20px
+      }
+    }
   }
 </style>
