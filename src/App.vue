@@ -17,8 +17,8 @@
         <li class="login" v-if="!isLogin" @mouseleave="leaveUl">
           <div @click.capture="toggle">17301051538</div>
           <ul v-if="switchover">
-            <li><a href="">我的订单</a></li>
-            <li><a href="">收货地址</a></li>
+            <li><a href="/#/myOrder">我的订单</a></li>
+            <li><a href="/#/receivingInfo">收货地址</a></li>
             <li @click="dropOut">退出登录</li>
           </ul>
         </li>
