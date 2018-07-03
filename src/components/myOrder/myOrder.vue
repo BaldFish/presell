@@ -81,7 +81,6 @@
           </div>
         </div>
 
-
       </div>
     </div>
 </template>
@@ -93,7 +92,6 @@
   const querystring = require('querystring');
 
   export default{
-    inject:['reload'],
     name: "orderHistory",
     data(){
       return {

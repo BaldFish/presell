@@ -67,8 +67,7 @@
           <button type="button" class="btn-mod" @click="isShow = true">修改信息</button>
         </div>
       </section>
-    
-    
+      
     </div>
   </div>
 </template>
