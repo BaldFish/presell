@@ -138,7 +138,7 @@
               //get短信验证码
               axios({
                 method: 'post',
-                url: `${baseURL}/v1/sms/code`,
+                url: `${baseURL}/exchange/v1/sms/code`,
                 data: querystring.stringify({
                   phone: "+86" + this.phoneRight, //手机号
                   type: 3 //1-注册，2-修改密码, 3-登录
@@ -176,7 +176,7 @@
         if (this.code) {
           axios({
             method: 'get',
-            url: `${baseURL}/v1/sms/+86${this.phoneRight}/code/${this.code}`
+            url: `${baseURL}/exchange/v1/sms/+86${this.phoneRight}/code/${this.code}`
           }).then(res => {
             this.codeNotice = false
           }).catch(error => {
@@ -210,11 +210,11 @@
             if (result) {
               axios({
                 method: 'post',
-                url: `${baseURL}/v1/sessions/phone`,
+                url: `${baseURL}/presell/v1/user`,
                 data: querystring.stringify(loginFormData)
               }).then(res => {
                 window.sessionStorage.setItem("loginInfo", JSON.stringify(res.data));
-                this.userId = res.data.user_id;
+                this.userId = res.data.user.id;
                 this.acquireUserInfo();
               }).catch(error => {
                 console.log(error);
@@ -226,7 +226,7 @@
       acquireUserInfo() {
         axios({
           method: "GET",
-          url: `${baseURL}/v1/users/${this.userId}`,
+          url: `${baseURL}/presell/v1/user/${this.userId}`,
           headers: {
             "Content-Type": "application/json",
           }
