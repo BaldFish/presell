@@ -74,7 +74,7 @@
     beforeMount() {
       if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
         this.isLogin = true;
-        this.userName = JSON.parse(sessionStorage.getItem("userInfo")).phone.substr(3)
+        this.userName = JSON.parse(sessionStorage.getItem("loginInfo")).user.phone.substr(3)
       } else {
         this.isLogin = false
       }
@@ -82,7 +82,7 @@
     beforeUpdate() {
       if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
         this.isLogin = true;
-        this.userName = JSON.parse(sessionStorage.getItem("userInfo")).phone.substr(3)
+        this.userName = JSON.parse(sessionStorage.getItem("loginInfo")).user.phone.substr(3)
       } else {
         this.isLogin = false
       }
@@ -98,6 +98,7 @@
         sessionStorage.removeItem('loginInfo');
         sessionStorage.removeItem('userInfo');
         this.switchover = false;
+        window.location.href="#/home"
         location.reload()
       },
       toggle() {

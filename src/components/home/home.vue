@@ -133,10 +133,10 @@
       class="dialog1">
       <div class="content">
         <ul>
-          <li><span>收货人：</span><span>陈逻</span></li>
-          <li><span>收货人电话：</span><span>15489768790</span></li>
-          <li><span>收货地址：</span><span>北京市朝阳区万达广场8号楼808万达广场808803</span></li>
-          <li><span>产品信息：</span><span>可信盾</span></li>
+          <li><span>收货人：</span><span>{{userInfo.name}}</span></li>
+          <li><span>收货人电话：</span><span>{{userInfo.phone_address.substr(3)}}</span></li>
+          <li><span>收货地址：</span><span>{{userInfo.address}}</span></li>
+          <li><span>产品信息：</span><span>{{productInfo.name}}</span></li>
           <li><span>数量：</span><span class="num"><span @click="subtract">-</span><input type="text" v-model="num"><span @click="add">+</span></span>
           </li>
           <li><span>支付金额：</span><span>{{total}}</span></li>
@@ -188,18 +188,22 @@
       return {
         dialog1: false,
         dialog2: false,
-        address: "",
         num: 1,
         value:1,
-        price:0
+        userInfo:{},
+        productInfo:{}
       }
     },
-    mounted() {
+    beforeMount() {
+      if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
+        this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+        console.log(this.userInfo )
+      }
     },
     methods: {
       purchase() {
         if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
-          if (JSON.parse(sessionStorage.getItem("userInfo")).address) {
+          if (!JSON.parse(sessionStorage.getItem("userInfo")).address) {
             this.dialog1 = true;
             this.acquireProductInfo()
           } else {
@@ -231,7 +235,7 @@
             "Content-Type": "application/json",
           }
         }).then((res) => {
-          this.price=res.data.price;
+          this.productInfo=res.data;
         }).catch((err) => {
           console.log(err);
         });
@@ -240,7 +244,7 @@
     watch: {},
     computed: {
       total:function () {
-      return (this.price*10000)*(this.num*10000)/100000000
+      return (this.productInfo.price*100)*(this.num*100)/10000
       }
     },
   }
