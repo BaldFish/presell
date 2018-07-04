@@ -197,12 +197,14 @@
     },
     methods: {
       purchase() {
-        if (!this.address) {
-          console.log(this.value);
-          this.dialog1 = true
+        if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
+          if (this.address) {
+            this.dialog1 = true
+          } else {
+            this.dialog2 = true
+          }
         } else {
-          console.log(2);
-          this.dialog2 = true
+          window.location.href = "#/login"
         }
       },
       payment() {
@@ -211,7 +213,7 @@
       },
       write() {
         this.dialog2 = false;
-        window.location.href = "#/contactUs"
+        window.location.href = "#/receivingInfo"
       },
       add() {
         this.num++

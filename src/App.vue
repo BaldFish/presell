@@ -11,14 +11,14 @@
         <li>
           <router-link to="/contactUs">联系我们</router-link>
         </li>
-        <li class="no_login" v-if="isLogin">
+        <li class="no_login" v-if="!isLogin">
           <router-link to="/login">登录</router-link>
         </li>
-        <li class="login" v-if="!isLogin" @mouseleave="leaveUl">
+        <li class="login" v-if="isLogin" @mouseleave="leaveUl">
           <div @click.capture="toggle">17301051538</div>
           <ul v-if="switchover">
-            <li><a href="">我的订单</a></li>
-            <li><a href="">收货地址</a></li>
+            <li><a href="/#/myOrder">我的订单</a></li>
+            <li><a href="/#/receivingInfo">收货地址</a></li>
             <li @click="dropOut">退出登录</li>
           </ul>
         </li>
@@ -74,7 +74,7 @@
     beforeMount() {
       if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
         this.isLogin = true;
-        this.userName = JSON.parse(sessionStorage.getItem("userName")).phone
+        this.userName = JSON.parse(sessionStorage.getItem("userInfo")).phone.substr(3)
       } else {
         this.isLogin = false
       }
@@ -82,7 +82,7 @@
     beforeUpdate() {
       if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
         this.isLogin = true;
-        this.userName = JSON.parse(sessionStorage.getItem("userName")).phone
+        this.userName = JSON.parse(sessionStorage.getItem("userInfo")).phone.substr(3)
       } else {
         this.isLogin = false
       }
@@ -97,7 +97,6 @@
       dropOut(command) {
         sessionStorage.removeItem('loginInfo');
         sessionStorage.removeItem('userInfo');
-        sessionStorage.removeItem('userName');
         this.switchover = false;
         location.reload()
       },

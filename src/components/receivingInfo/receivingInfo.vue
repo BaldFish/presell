@@ -31,7 +31,8 @@
             </el-form-item>
             <el-form-item label="选择地区" prop="selected">
               <template>
-                <area-select class="area-reset" :level="2" type="text" :data="pcaa" :placeholders="placeholders" v-model="form.selected"></area-select>
+                <area-select class="area-reset" :level="2" type="text" :data="pcaa" :placeholders="placeholders"
+                             v-model="form.selected"></area-select>
               </template>
             </el-form-item>
             <el-form-item label="详细地址" prop="address">
@@ -68,12 +69,12 @@
         </div>
       </section>
 
-
     </div>
   </div>
 </template>
 
 <script>
+
   import { pca, pcaa } from 'area-data';
   import axios from "axios";
   import {baseURL} from '@/common/js/public.js';
@@ -154,22 +155,26 @@
 
 
     }
+
 </script>
 
 <style scoped lang="stylus">
-  .main-bg{
+  .main-bg {
     background-color: #f7f7f7;
   }
-  .container{
-    width:1200px;
-    margin:0 auto;
+
+  .container {
+    width: 1200px;
+    margin: 0 auto;
     padding: 54px 0;
     padding-top: 100px;
   }
-  .nav{
-    height:42px;
+
+  .nav {
+    height: 42px;
   }
-  .nav ul li{
+
+  .nav ul li {
     width: 100px;
     height: 40px;
     background-color: #ffffff;
@@ -180,40 +185,49 @@
     line-height: 40px;
     font-size: 18px;
   }
-  .nav ul li p{
+
+  .nav ul li p {
     color: #519bff;
   }
-  .nav-active{
+
+  .nav-active {
     background-color: #519bff !important;
   }
-  .nav-active p{
+
+  .nav-active p {
     color: #ffffff !important;
   }
-  .address-content{
+
+  .address-content {
     width: 1200px;
     height: 704px;
     background-color: #ffffff;
     border: solid 1px #bfbfbf;
     margin-top: 16px;
   }
-  .address-left{
+
+  .address-left {
     width: 480px;
     height: 704px;
     float: left;
   }
-  .address-left img{
+
+  .address-left img {
     margin-top: 260px;
     margin-left: 100px;
   }
-  .address-right{
+
+  .address-right {
     width: 720px;
-    height:704px;
+    height: 704px;
     float: left;
   }
-  .address-right .el-form{
+
+  .address-right .el-form {
     margin-top: 136px;
   }
-  .btn-footer button{
+
+  .btn-footer button {
     width: 100px;
     height: 34px;
     border: solid 1px #519bff;
@@ -221,33 +235,39 @@
     cursor: pointer;
     margin-top: 85px;
   }
-  .btn-footer button:first-child{
+
+  .btn-footer button:first-child {
     background-color: #519bff;
     font-size: 16px;
     color: #ffffff;
     margin-left: 66px;
   }
-  .btn-footer button:last-child{
+
+  .btn-footer button:last-child {
     background-color: #ffffff;
     font-size: 16px;
     color: #519bff;
     margin-left: 70px;
   }
-  .details-address{
+
+  .details-address {
     width: 495px;
     height: 253px;
     background: url("./images/address.png") no-repeat center;
     background-size: 100% 100%;
     margin-top: 136px;
   }
-  .details-address ul{
+
+  .details-address ul {
     padding-top: 40px;
   }
-  .details-address ul li{
+
+  .details-address ul li {
     height: 48px;
     text-align: left;
   }
-  .details-address ul li label{
+
+  .details-address ul li label {
     font-size: 18px;
     color: #222;
     width: 124px;
@@ -257,25 +277,29 @@
     margin-left: 55px;
     float: left;
   }
-  .details-address ul li p{
+
+  .details-address ul li p {
     font-size: 14px;
     color: #999999;
-    width:300px;
-    height:100%;
+    width: 300px;
+    height: 100%;
     float: left;
     text-align: left;
   }
-  .details-address ul li p span{
+
+  .details-address ul li p span {
     margin-top: 26px;
     display: inline-block;
   }
-  .notice{
+
+  .notice {
     font-size: 14px;
     color: #666666;
     margin-top: 30px;
     margin-bottom: 40px;
   }
-  .btn-mod{
+
+  .btn-mod {
     width: 100px;
     height: 34px;
     background-color: #519bff;
@@ -286,7 +310,8 @@
     border: 1px solid #519bff;
     margin-left: 194px;
   }
-  .title{
+
+  .title {
     font-size: 16px;
     color: #ffffff;
     position: relative;
@@ -299,18 +324,21 @@
   textarea:-ms-input-placeholder {
     color: #999999;
   }
+
   .address-right input::-webkit-input-placeholder,
   textarea:-ms-input-placeholder {
     color: #999999;
   }
-  .input-reset .el-input__inner{
+
+  .input-reset .el-input__inner {
     width: 452px;
     height: 40px;
     background-color: #fafafa;
     border-radius: 4px;
     border: solid 1px #e5e5e5;
   }
-  .textarea-reset .el-textarea__inner{
+
+  .textarea-reset .el-textarea__inner {
     width: 452px;
     height: 120px;
     background-color: #fafafa;
@@ -318,30 +346,36 @@
     border: solid 1px #e5e5e5;
     font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
   }
-  .area-reset .area-select{
+
+  .area-reset .area-select {
     width: 139px;
     height: 40px;
     background-color: #fafafa;
     border-radius: 4px;
     border: solid 1px #e5e5e5;
   }
-  .area-reset div:first-child{
+
+  .area-reset div:first-child {
     margin-left: 0;
   }
-  .area-reset .area-selectable-list .area-select-option.selected{
+
+  .area-reset .area-selectable-list .area-select-option.selected {
     color: #519bff;
   }
-  .area-reset .area-selected-trigger{
+
+  .area-reset .area-selected-trigger {
     padding: 0 20px 7px 12px;
     color: #999999;
   }
-  .address-right .el-form-item__label{
+
+  .address-right .el-form-item__label {
     font-size: 18px;
     color: #222222;
     text-align: left;
     width: 120px !important;
   }
-  .address-right .el-form-item__content{
+
+  .address-right .el-form-item__content {
     margin-left: 120px !important;
   }
 </style>
