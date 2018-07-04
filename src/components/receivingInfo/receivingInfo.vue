@@ -20,21 +20,22 @@
         <div class="address-left">
           <img src="./images/kexinbanlv.png" alt="">
         </div>
+
         <div class="address-right" v-if="isShow">
-          <el-form ref="form" :model="form" label-width="80px">
-            <el-form-item label="收货姓名">
+          <el-form :model="form" :rules="rules" ref="form" label-width="80px">
+            <el-form-item label="收货姓名" prop="name">
               <el-input class="input-reset" placeholder="请输入您的真实姓名" v-model="form.name"></el-input>
             </el-form-item>
-            <el-form-item label="收货号码">
-              <el-input class="input-reset" placeholder="请输入您的手机号" v-model="form.phone"></el-input>
+            <el-form-item label="收货号码" prop="phone_address">
+              <el-input class="input-reset" placeholder="请输入您的手机号" v-model="form.phone_address"></el-input>
             </el-form-item>
-            <el-form-item label="选择地区">
+            <el-form-item label="选择地区" prop="selected">
               <template>
                 <area-select class="area-reset" :level="2" type="text" :data="pcaa" :placeholders="placeholders" v-model="form.selected"></area-select>
               </template>
             </el-form-item>
-            <el-form-item label="详细地址">
-              <el-input type="textarea" placeholder="请填写详细地址" class="textarea-reset" v-model="form.desc"></el-input>
+            <el-form-item label="详细地址" prop="address">
+              <el-input type="textarea" placeholder="请填写详细地址" class="textarea-reset" v-model="form.address"></el-input>
             </el-form-item>
 
             <el-form-item class="btn-footer">
@@ -50,15 +51,15 @@
             <ul>
               <li>
                 <label>收货姓名</label>
-                <p><span>里斯</span></p>
+                <p><span>{{form.name}}</span></p>
               </li>
               <li>
                 <label>收货号码</label>
-                <p><span>13545268959</span></p>
+                <p><span>{{form.phone_address}}</span></p>
               </li>
               <li>
                 <label>收货人地址</label>
-                <p><span>北京市朝阳区万达广场8号楼808室</span></p>
+                <p><span>{{detailAddress}}</span></p>
               </li>
             </ul>
           </div>
@@ -68,44 +69,90 @@
       </section>
 
 
-
-
-
-
     </div>
   </div>
 </template>
 
 <script>
   import { pca, pcaa } from 'area-data';
+  import axios from "axios";
+  import {baseURL} from '@/common/js/public.js';
+  const querystring = require('querystring');
 
     export default {
-        name: "login",
+        name: "receivingInfo",
         data() {
           return {
             form: {
               name: '',
-              phone: '',
-              desc: '',
+              phone_address: '',
+              address: '',
               selected:[]
             },
             pcaa: pcaa,
             placeholders:["请选择省","请选择市","请选择区"],
-            isShow:true
+            isShow:true,
+            detailAddress:'',
+            userInfo:'',
+            rules: {
+              name: [
+                { required: true, message: '请输入真实姓名', trigger: 'blur' },
+              ],
+              phone_address: [
+                { required: true, message: '请输入手机号码', trigger: 'blur' }
+              ],
+              selected: [
+                { required: true, message: '请选择地区', trigger: 'change' }
+              ],
+              address: [
+                { required: true, message: '请填写详细地址', trigger: 'blur' }
+              ]
+            }
           }
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
           submit(){
-            this.isShow = !this.isShow
-          }
+            this.detailAddress = this.form.selected.toString().replace(/,/g,"") + this.form.address;
+            let formData = {
+              name: this.form.name,
+              phone_address: "+86" + this.form.phone_address,
+              address: this.detailAddress,
+            };
+            this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
+            this.$refs.form.validate((valid) => {
+              if (valid) {
+                axios({
+                  method: 'put',
+                  url: `${baseURL}/presell/v1/user/address/${this.userInfo.id}`,
+                  data: querystring.stringify(formData)
+                }).then(res => {
+                  this.acquireUserInfo()
+                }).catch(error => {
+                  console.log(error);
+                })
+              }
+            })
+
+          },
+          acquireUserInfo() {
+            axios({
+              method: "GET",
+              url: `${baseURL}/presell/v1/user/${this.userInfo.id}`,
+              headers: {
+                "Content-Type": "application/json",
+              }
+            }).then((res) => {
+              window.sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+              this.isShow = !this.isShow
+            }).catch((err) => {
+              console.log(err);
+            });
+          },
+
         },
-        watch: {},
-        computed: {},
-        components: {},
+
+
     }
 </script>
 

@@ -39,23 +39,23 @@
           <thead>
             <tr class="th_classify">
               <th colspan="6">
-                <span>订单编号： {{item.orderNum}}</span>
-                <span>2018-04-01 12:12:56</span>
+                <span>订单编号： {{item.order_num}}</span>
+                <span>{{item.created_at}}</span>
               </th>
             </tr>
           </thead>
           <tbody>
           <tr class="img_tbody">
             <td>
-              <img :src="item.asseturl" alt="">
-              <p>{{item.assetname}}</p>
+              <img :src="item.produce_picture" alt="">
+              <p>{{item.produce_name}}</p>
             </td>
-            <td>{{item.sell_type}}</td>
-            <td>{{item.split_count}}</td>
-            <td v-if="item.orderStatus == 2">
+            <td>{{item.cnt}}</td>
+            <td>{{item.price}}</td>
+            <td v-if="item.order_statu == 2">
               <p>已支付</p>
             </td>
-            <td v-if="item.orderStatus === 1">
+            <td v-if="item.order_statu == 1">
               <p>未支付</p>
               <router-link to="" class="to-pay">去支付</router-link>
             </td>
@@ -94,7 +94,7 @@
 
   export default{
     inject:['reload'],
-    name: "orderHistory",
+    name: "myOrder",
     data(){
       return {
         options: [{
@@ -108,9 +108,7 @@
           label: '2017年订单'
         }],
         value: '1',
-        //input: '',
         dataList:'',
-        userInfo:'',
         total: 10,//总页数
         limit: 10,//每页显示多少条
         currentPage: 1,//当前页数
@@ -119,26 +117,15 @@
       }
     },
     mounted: function() {
-      //获取用户信息
-      let logInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
-      axios({
-        method: 'get',
-        url: `${baseURL}/v1/users/${logInfo.user_id}`,
-      }).then(res => {
-        this.userInfo = res.data;
-        sessionStorage.setItem("userInfo",JSON.stringify(res.data))
-      }).catch(error => {
-        console.log(error);
-      });
       //获取表格数据
       this.getData()
     },
     methods: {
       getData(){
-        let loginInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
+        let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
         axios({
           method: 'get',
-          url: `${baseURL}/v1/order/list/${loginInfo.user_id}?page=${this.currentPage}&limit=${this.limit}&begin=${this.begin}&end=${this.end}`,
+          url: `${baseURL}/presell/v1/order/list/${userInfo.id}?page=${this.currentPage}&limit=${this.limit}&begin=${this.begin}&end=${this.end}&status=`,
         }).then(res => {
           this.dataList = res.data.data;
           this.total = res.data.count;
@@ -304,6 +291,7 @@
   }
   .img_tbody td{
     width: 200px;
+    vertical-align: middle;
   }
   .img_tbody td:nth-child(1){
     width: 600px;
@@ -328,10 +316,6 @@
   .img_tbody td:last-child{
     border-right: solid 1px #bfbfbf;
   }
-  .img_tbody td:last-child p{
-    position: relative;
-    bottom: 18px;
-  }
   .to-pay{
     width: 64px;
     height: 28px;
@@ -340,8 +324,7 @@
     display: inline-block;
     line-height: 28px;
     color: #c6351e;
-    position: relative;
-    bottom:8px;
+    margin-top: 8px;
   }
 
   .no-order{
