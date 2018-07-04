@@ -15,7 +15,7 @@
           <router-link to="/login">登录</router-link>
         </li>
         <li class="login" v-if="isLogin" @mouseleave="leaveUl">
-          <div @click.capture="toggle">17301051538</div>
+          <div @click.capture="toggle">{{userName}}</div>
           <ul v-if="switchover">
             <li><a href="/#/myOrder">我的订单</a></li>
             <li><a href="/#/receivingInfo">收货地址</a></li>

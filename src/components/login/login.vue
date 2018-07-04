@@ -231,8 +231,6 @@
             "Content-Type": "application/json",
           }
         }).then((res) => {
-          console.log(res)
-          res.data.phone = res.data.phone.substr(3, 3) + "***" + res.data.phone.substr(10, 4);
           window.sessionStorage.setItem("userInfo", JSON.stringify(res.data));
           window.location.href = "#/home"
         }).catch((err) => {

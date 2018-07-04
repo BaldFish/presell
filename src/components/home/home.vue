@@ -139,7 +139,7 @@
           <li><span>产品信息：</span><span>可信盾</span></li>
           <li><span>数量：</span><span class="num"><span @click="subtract">-</span><input type="text" v-model="num"><span @click="add">+</span></span>
           </li>
-          <li><span>支付金额：</span><span>899</span></li>
+          <li><span>支付金额：</span><span>{{total}}</span></li>
           <li>
             <span>支付方式：</span>
             <span class="pay">
@@ -183,14 +183,15 @@
   
   export default {
     name: "home",
+    components: {},
     data() {
       return {
         dialog1: false,
         dialog2: false,
         address: "",
         num: 1,
-        value:1
-        
+        value:1,
+        price:0
       }
     },
     mounted() {
@@ -198,8 +199,9 @@
     methods: {
       purchase() {
         if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
-          if (this.address) {
-            this.dialog1 = true
+          if (JSON.parse(sessionStorage.getItem("userInfo")).address) {
+            this.dialog1 = true;
+            this.acquireProductInfo()
           } else {
             this.dialog2 = true
           }
@@ -221,10 +223,26 @@
       subtract() {
         this.num > 1 ? this.num-- : this.num = 1
       },
+      acquireProductInfo() {
+        axios({
+          method: "GET",
+          url: `${baseURL}/presell/v1/produce`,
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }).then((res) => {
+          this.price=res.data.price;
+        }).catch((err) => {
+          console.log(err);
+        });
+      },
     },
     watch: {},
-    computed: {},
-    components: {}
+    computed: {
+      total:function () {
+      return (this.price*10000)*(this.num*10000)/100000000
+      }
+    },
   }
 </script>
 
