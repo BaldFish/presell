@@ -134,7 +134,7 @@
       <div class="content">
         <ul>
           <li><span>收货人：</span><span>{{userInfo.name}}</span></li>
-          <li><span>收货人电话：</span><span>{{userInfo.phone_address.substr(3)}}</span></li>
+          <li><span>收货人电话：</span><span>{{userInfo.phone_address?userInfo.phone_address.substr(3):""}}</span></li>
           <li><span>收货地址：</span><span>{{userInfo.address}}</span></li>
           <li><span>产品信息：</span><span>{{productInfo.name}}</span></li>
           <li><span>数量：</span><span class="num"><span @click="subtract">-</span><input type="text" v-model="num"><span @click="add">+</span></span>
@@ -197,17 +197,16 @@
     beforeMount() {
       if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
         this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-        console.log(this.userInfo )
       }
     },
     methods: {
       purchase() {
         if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
-          if (!JSON.parse(sessionStorage.getItem("userInfo")).address) {
-            this.dialog2 = true
-          } else {
+          if (JSON.parse(sessionStorage.getItem("userInfo")).address) {
             this.dialog1 = true;
             this.acquireProductInfo()
+          } else {
+            this.dialog2 = true
           }
         } else {
           window.location.href = "#/login"
