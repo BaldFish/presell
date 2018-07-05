@@ -55,7 +55,7 @@
   import "./common/stylus/index.styl";
   import {baseURL, cardURL} from '@/common/js/public.js';
   import axios from "axios";
-  
+
   export default {
     name: 'App',
     provide() {
@@ -117,7 +117,7 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   .head-wrap {
     width: 100%;
     min-width 1274px
@@ -193,7 +193,7 @@
       }
     }
   }
-  
+
   .main_wrap {
     flex: 1;
     box-sizing: border-box;
@@ -202,7 +202,7 @@
     min-width 1274px
     background-color #ffffff
   }
-  
+
   .footer-wrap {
     width 100%
     min-width 1274px

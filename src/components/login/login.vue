@@ -4,7 +4,7 @@
 
       <div class="login-content">
         <div class="title">
-          <p>手机登录</p>
+          <p>用户登录</p>
           <ul class="nav-bar">
             <li></li>
             <li></li>
@@ -38,7 +38,7 @@
         </section>
 
         <router-link to="" class="to_login"><span @click="login">登录</span></router-link>
-        <p class="notice">登录即表示您同意并愿意遵守智康链用户协议和隐私声明</p>
+        <!--<p class="notice">登录即表示您同意并愿意遵守可信盾用户协议和隐私声明</p>-->
 
       </div>
 
