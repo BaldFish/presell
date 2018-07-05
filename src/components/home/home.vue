@@ -180,7 +180,7 @@
   import axios from "axios";
   import _ from "lodash";
   import {baseURL, cardURL} from '@/common/js/public.js';
-  
+
   export default {
     name: "home",
     components: {},
@@ -204,10 +204,10 @@
       purchase() {
         if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
           if (!JSON.parse(sessionStorage.getItem("userInfo")).address) {
+            this.dialog2 = true
+          } else {
             this.dialog1 = true;
             this.acquireProductInfo()
-          } else {
-            this.dialog2 = true
           }
         } else {
           window.location.href = "#/login"
@@ -307,7 +307,7 @@
         }
       }
     }
-    
+
     .what_wrap {
       height 700px
       background-color #ffffff
@@ -671,7 +671,7 @@
       }
     }
   }
-  
+
   .dialog2 {
     .el-dialog--center {
       text-align: center;
