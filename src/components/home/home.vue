@@ -137,18 +137,19 @@
           <li><span>收货人电话：</span><span>{{userInfo.phone_address?userInfo.phone_address.substr(3):""}}</span></li>
           <li><span>收货地址：</span><span>{{userInfo.address}}</span></li>
           <li><span>产品信息：</span><span>{{productInfo.name}}</span></li>
-          <li><span>数量：</span><span class="num"><span @click="subtract">-</span><input type="text" v-model="num"><span @click="add">+</span></span>
+          <li><span>数量：</span><span class="num"><span @click="subtract">-</span><input type="text" v-model="num"><span
+            @click="add">+</span></span>
           </li>
           <li><span>支付金额：</span><span>{{total}}</span></li>
           <li>
             <span>支付方式：</span>
             <span class="pay">
               <label class="pay_label">
-                <input class="pay_radio" type="radio" name="pay" value=1 v-model="value">
+                <input class="pay_radio" type="radio" name="pay" value="alipay_cn" v-model="value">
                 <span class="pay_radioInput"></span>支付宝
               </label>
               <label class="pay_label">
-                  <input class="pay_radio" type="radio" name="pay" value=2 v-model="value">
+                  <input class="pay_radio" type="radio" name="pay" value="tenpay_cn" v-model="value">
                   <span class="pay_radioInput"></span>微信
               </label>
             </span>
@@ -177,6 +178,7 @@
 </template>
 
 <script>
+  const querystring = require('querystring');
   import axios from "axios";
   import _ from "lodash";
   import {baseURL, cardURL} from '@/common/js/public.js';
@@ -188,14 +190,16 @@
       return {
         dialog1: false,
         dialog2: false,
-        num: 1,
-        value:1,
+        num: "1",
+        value:"alipay_cn",
         userInfo:{},
-        productInfo:{}
+        productInfo:{},
+        token:""
       }
     },
     beforeMount() {
       if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
+        this.token=JSON.parse(sessionStorage.getItem("loginInfo")).session.token
         this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
       }
     },
@@ -213,8 +217,23 @@
         }
       },
       payment() {
-        this.dialog1 = false;
-        window.location.href = "#/contactUs"
+        axios({
+          method: "POST",
+          url: `${baseURL}/presell/v1/order/${this.userInfo.id}/${this.productInfo.id}`,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-Access-Token": `${this.token}`
+          },
+          data:querystring.stringify({
+            count:this.num,
+            pay_id:this.value
+          })
+        }).then((res) => {
+          this.dialog1 = false;
+          //window.location.href = "#/contactUs"
+        }).catch((err) => {
+          console.log(err);
+        });
       },
       write() {
         this.dialog2 = false;
@@ -224,7 +243,7 @@
         this.num++
       },
       subtract() {
-        this.num > 1 ? this.num-- : this.num = 1
+        this.num--
       },
       acquireProductInfo() {
         axios({
@@ -235,12 +254,21 @@
           }
         }).then((res) => {
           this.productInfo=res.data;
+          console.log(this.productInfo)
         }).catch((err) => {
           console.log(err);
         });
       },
     },
-    watch: {},
+    watch: {
+      num:function () {
+        if(this.num<=0){
+          this.num=1
+        }else if(this.num>this.productInfo.cnt){
+          this.num=this.productInfo.cnt
+        }
+      }
+    },
     computed: {
       total:function () {
       return (this.productInfo.price*100)*(this.num*100)/10000

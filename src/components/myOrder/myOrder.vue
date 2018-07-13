@@ -51,10 +51,10 @@
             </td>
             <td>{{item.cnt}}</td>
             <td>{{item.price}}</td>
-            <td v-if="item.order_statu == 2">
+            <td v-if="item.order_status == 2">
               <p>已支付</p>
             </td>
-            <td v-if="item.order_statu == 1">
+            <td v-if="item.order_status == 1">
               <p>未支付</p>
               <router-link to="" class="to-pay">去支付</router-link>
             </td>
