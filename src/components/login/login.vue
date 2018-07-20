@@ -38,8 +38,12 @@
         </section>
 
         <router-link to="" class="to_login"><span @click="login">登录</span></router-link>
-        <!--<p class="notice">登录即表示您同意并愿意遵守可信盾用户协议和隐私声明</p>-->
-
+        <p class="notice">
+          登录即表示您同意并愿意遵守
+          <a href="#/userProtocol" target="_blank">可信盾用户协议</a>
+          和
+          <a href="#/privacyNotice" target="_blank">隐私声明</a>
+        </p>
       </div>
 
 
@@ -380,5 +384,8 @@
   .notice{
     font-size: 14px;
     color: #666666;
+  }
+  .notice a{
+    color: #519bff;
   }
 </style>
