@@ -145,12 +145,12 @@
             <span>支付方式：</span>
             <span class="pay">
               <label class="pay_label">
-                <input class="pay_radio" type="radio" name="pay" value="alipay_cn" v-model="value">
+                <input class="pay_radio" type="radio" name="pay" value=20 v-model="value">
                 <span class="pay_radioInput"></span>支付宝
               </label>
               <label class="pay_label">
-                  <input class="pay_radio" type="radio" name="pay" value="tenpay_cn" v-model="value">
-                  <span class="pay_radioInput"></span>微信
+                <input class="pay_radio" type="radio" name="pay" value=10 v-model="value">
+                <span class="pay_radioInput"></span>微信
               </label>
             </span>
           </li>
@@ -178,11 +178,11 @@
 </template>
 
 <script>
-  const querystring = require('querystring');
   import axios from "axios";
   import _ from "lodash";
   import {baseURL, cardURL} from '@/common/js/public.js';
-
+  const querystring = require('querystring');
+  
   export default {
     name: "home",
     components: {},
@@ -191,17 +191,25 @@
         dialog1: false,
         dialog2: false,
         num: "1",
-        value:"alipay_cn",
+        value:20,
         userInfo:{},
+        userId:"",
+        orderNum:"",
         productInfo:{},
-        token:""
+        token:"",
+        timer:"",
       }
     },
     beforeMount() {
       if (JSON.parse(sessionStorage.getItem("loginInfo"))) {
-        this.token=JSON.parse(sessionStorage.getItem("loginInfo")).session.token
+        this.token=JSON.parse(sessionStorage.getItem("loginInfo")).session.token;
+        this.userId = JSON.parse(sessionStorage.getItem("loginInfo")).session.user_id
         this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
       }
+    },
+    beforeRouteLeave(to, from, next) {
+      clearTimeout(this.timer);
+      next();
     },
     methods: {
       purchase() {
@@ -216,6 +224,7 @@
           window.location.href = "#/login"
         }
       },
+      //确认支付
       payment() {
         axios({
           method: "POST",
@@ -229,8 +238,36 @@
             pay_id:this.value
           })
         }).then((res) => {
-          this.dialog1 = false;
-          //window.location.href = "#/contactUs"
+          window.open(res.data.data.image_url,"_blank");
+          this.orderNum=res.data.data.order_no
+          this.acquireOrderInfo()
+        }).catch((err) => {
+          console.log(err);
+        });
+      },
+      //获取订单详情及支付状态
+      acquireOrderInfo() {
+        axios({
+          method: "GET",
+          url: `${baseURL}/presell/v1/order/detail/${this.userId}/${this.orderNum}`,
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }).then((res) => {
+          console.log(res.data.order_status);
+          if(res.data.order_status === 0){
+            clearTimeout(this.timer);
+            return
+          } else if (res.data.order_status === 1) {
+            clearTimeout(this.timer);
+            let that = this;
+            this.timer = window.setTimeout(function () {
+              that.acquireOrderInfo()
+            }, 5000);
+          } else if (res.data.order_status === 2) {
+            clearTimeout(this.timer);
+            this.dialog1 = false;
+          }
         }).catch((err) => {
           console.log(err);
         });
@@ -254,7 +291,6 @@
           }
         }).then((res) => {
           this.productInfo=res.data;
-          console.log(this.productInfo)
         }).catch((err) => {
           console.log(err);
         });

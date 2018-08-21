@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="login-box">
-
+      
       <div class="login-content">
         <div class="title">
           <p>用户登录</p>
@@ -36,7 +36,6 @@
             </li>
           </ul>
         </section>
-
         <router-link to="" class="to_login"><span @click="login">登录</span></router-link>
         <p class="notice">
           登录即表示您同意并愿意遵守
@@ -45,8 +44,6 @@
           <a href="#/privacyNotice" target="_blank">隐私声明</a>
         </p>
       </div>
-
-
     </div>
   </div>
 </template>
@@ -55,7 +52,7 @@
   import axios from "axios";
   import {baseURL} from '@/common/js/public.js';
   const querystring = require('querystring');
-
+  
   export default {
     data() {
       return {
@@ -83,7 +80,7 @@
         s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
         s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
         s[8] = s[13] = s[18] = s[23] = "-";
-
+        
         var uuid = s.join("");
         return uuid;
       }
@@ -97,7 +94,7 @@
         this.getCaptcha()
       })
     },
-
+    
     methods: {
       //获取图片验证码--图片
       getCaptcha() {
@@ -128,7 +125,6 @@
             //校验input输入值
             if (result) {
               this.isDisabled = false;
-
               //倒计时
               let me = this;
               me.codeValue = false;
@@ -151,13 +147,13 @@
               }).catch(error => {
                 console.log(error);
               })
-
+              
             } else {
               this.isDisabled = true;
             }
           }
         })
-
+        
       },
       //校验图形验证码
       captchaErrorRight() {
@@ -200,7 +196,7 @@
           captcha_id: this.captcha_id, //图片验证码ID
           captcha_number: this.captcha_number_right //图片验证码--图片
         };
-
+        
         this.$validator.validateAll({
           mobileRight: this.phoneRight,
           captcha_number_right: this.captcha_number_right,
@@ -247,47 +243,54 @@
 </script>
 
 <style scoped lang="stylus">
-  .container{
-    width:100%;
+  .container {
+    width: 100%;
     background: url("./images/bj.png") no-repeat center;
     background-size: 100% 100%;
-    height:870px;
+    height: 870px;
   }
-  .login-box{
+  
+  .login-box {
     width: 506px;
     height: 414px;
     background-color: #ffffff;
     box-shadow: -1px -2px 27px 4px;
-    margin:0 auto;
+    margin: 0 auto;
     top: 260px;
     position: relative;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
   }
-  .login-content{
+  
+  .login-content {
     padding-top: 26px;
     margin: 0 64px;
     font-size: 20px;
     color: #222222;
     text-align: center;
   }
-  .nav-bar{
+  
+  .nav-bar {
     margin-top: 20px;
     height: 4px;
   }
-  .nav-bar li{
+  
+  .nav-bar li {
     width: 189px;
     height: 4px;
   }
-  .nav-bar li:first-child{
+  
+  .nav-bar li:first-child {
     background-color: #313131;
     float: left;
   }
-  .nav-bar li:last-child{
+  
+  .nav-bar li:last-child {
     background-color: #519bff;
     float: right;
   }
-  .account-login ul li{
+  
+  .account-login ul li {
     width: 378px;
     height: 40px;
     background-color: #f3f3f3;
@@ -295,7 +298,8 @@
     font-size: 14px;
     color: #999999;
   }
-  .account-login ul li input{
+  
+  .account-login ul li input {
     height: 40px;
     background-color: #f3f3f3;
     float: left;
@@ -304,14 +308,17 @@
     width: 210px;
     -webkit-box-shadow: 0 0 0px 1000px #f3f3f3 inset !important;
   }
-  .account-login ul li:nth-child(1){
+  
+  .account-login ul li:nth-child(1) {
     margin-top: 32px;
   }
-  .account-login ul li:nth-child(1) input{
+  
+  .account-login ul li:nth-child(1) input {
     margin-left: 11px;
     width: 330px;
   }
-  .account-login ul li:nth-child(1) i{
+  
+  .account-login ul li:nth-child(1) i {
     width: 19px;
     height: 28px;
     display: inline-block;
@@ -320,7 +327,8 @@
     margin: 6px;
     float: left;
   }
-  .account-login ul li:nth-child(2) i{
+  
+  .account-login ul li:nth-child(2) i {
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -329,7 +337,8 @@
     margin: 10px 6px;
     float: left;
   }
-  .account-login ul li:nth-child(3) i{
+  
+  .account-login ul li:nth-child(3) i {
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -338,6 +347,7 @@
     margin: 10px 6px;
     float: left;
   }
+  
   .img_change_img {
     width: 100px !important;
     height: 33px !important;
@@ -345,6 +355,7 @@
     margin: 3px 10px;
     cursor: pointer;
   }
+  
   .error {
     position: relative;
     color: #c6351e;
@@ -352,8 +363,9 @@
     width: 200px;
     top: 5px;
     text-align: left;
-    left:-90px;
+    left: -90px;
   }
+  
   .get_code {
     border: solid 1px #519bff;
     font-size: 14px;
@@ -361,6 +373,7 @@
     text-align: center;
     line-height: 35px;
   }
+  
   .count_down {
     background-color: #7d7d7d;
     font-size: 14px;
@@ -368,6 +381,7 @@
     text-align: center;
     line-height: 33px;
   }
+  
   .to_login span {
     font-size: 18px;
     color: #ffffff;
@@ -381,11 +395,13 @@
     border-radius: 20px;
     margin-top: 48px;
   }
-  .notice{
+  
+  .notice {
     font-size: 14px;
     color: #666666;
   }
-  .notice a{
+  
+  .notice a {
     color: #519bff;
   }
 </style>
